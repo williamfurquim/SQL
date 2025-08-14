@@ -1,0 +1,64 @@
+(1)
+
+1. 
+SELECT Alunos.Nome, Notas.Nota
+FROM ALunos
+Join Notas
+ON Alunos.IDaluno = Notas.IDaluno
+
+2.
+SELECT Disciplina, AVG(Nota) as Média
+FROM NOTAS
+GROUP BY Disciplina
+
+3.
+SELECT Alunos.Nome, Notas.Nota
+FROM ALunos
+Join Notas
+ON Alunos.IDaluno = Notas.IDaluno
+WHERE Nota >= 7
+
+4.
+SELECT Alunos.Nome, Notas.Nota
+FROM ALunos
+Join Notas
+ON Alunos.IDaluno = Notas.IDaluno
+WHERE Nota IS NULL
+
+(2)
+
+1.
+SELECT Titulo, Genero
+FROM Filmes
+WHERE Genero = 'Ação'
+
+2.
+SELECT Sessões.IDsessao, Filmes.Titulo, Filmes.Ano
+FROM Sessões
+JOIN Filmes
+ON Sessões.IDfilme = Filmes.IDfilme
+WHERE Ano > 2020
+
+3.
+SELECT Filmes.Titulo, Sessões.IDsessao
+FROM Sessões
+JOIN Filmes
+ON Sessões.IDfilme = Filmes.IDfilme
+
+4.
+SELECT Filmes.Titulo, Sessões.Data
+FROM Filmes
+JOIN Sessões
+ON Filmes.IDfilme = Sessões.IDfilme
+
+(3)
+
+1.
+SELECT Pacientes.Nome, Consultas.Medico 
+FROM Pacientes
+JOIN Consultas 
+ON Pacientes.IDpaciente = Consultas.IDpaciente
+WHERE Medico = 'Dr. Riquelme'
+
+2.
+
