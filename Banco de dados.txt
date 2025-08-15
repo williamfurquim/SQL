@@ -1,0 +1,168 @@
+		___________________1
+
+CREATE TABLE Alunos (
+  id_aluno INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  nome VARCHAR(255),
+  data_nascimento DATE
+);
+
+CREATE TABLE Notas (
+  id_nota INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  id_aluno INT NOT NULL,
+  disciplina VARCHAR(255),
+  nota INT,
+  FOREIGN KEY (id_aluno) REFERENCES Alunos (id_aluno)
+);
+
+INSERT INTO Alunos (nome, data_nascimento) VALUES
+('William', '2004-01-01'),
+('Amanda', '2003-02-15'),
+('Eduardo', '2002-03-20'),
+('Lara', '2001-04-10'),
+('João', '2005-05-25'),
+('Rafael', '2006-06-30');
+
+INSERT INTO Notas (id_aluno, disciplina, nota) VALUES
+(1, 'MAT', 9),
+(2, 'PT', 9),
+(3, 'GEO', 9),
+(4, 'MAT', 9),
+(5, 'PT', NULL),
+(6, 'GEO', NULL);
+
+		___________________2
+
+CREATE TABLE Filmes (
+  id_filme INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255),
+  genero VARCHAR(255),
+  ano INT
+);
+
+CREATE TABLE Sessoes (
+  id_sessao INT AUTO_INCREMENT PRIMARY KEY,
+  id_filme INT,
+  data DATE,
+  hora TIME,
+  FOREIGN KEY (id_filme) REFERENCES Filmes (id_filme)
+);
+
+INSERT INTO Filmes (titulo, genero, ano) VALUES
+('Duro de matar', 'Ação', 1988),
+('O Exterminador do Futuro', 'Ação', 1984),
+('Velocidade Máxima', 'Ação', 1994),
+('Duna', 'Ficção', 2021),
+('Superman', 'Ficção', 2025),
+('Quarteto Fantástico', 'Ficção', 2025);
+
+INSERT INTO Sessoes (id_filme, data, hora) VALUES
+(1, '1988-12-10', '14:40:00'),
+(2, '1984-06-10', '16:10:00'),
+(3, '1994-02-22', '14:00:00'),
+(4, '2021-09-17', '13:30:00'),
+(5, '2025-07-10', '20:35:00'),
+(6, '2025-08-04', '19:05:00');
+
+		___________________3
+
+CREATE TABLE Pacientes (
+  id_paciente INT PRIMARY KEY,
+  nome VARCHAR(255),
+data_nascimento DATE
+)
+
+CREATE TABLE Consultas (
+id_consulta INT PRIMARY KEY,
+  id_paciente INT,
+  data_consulta DATE,
+  medico VARCHAR(255),
+FOREIGN KEY (id_paciente) REFERENCES Pacientes (id_paciente)
+)
+
+INSERT INTO Pacientes (id_paciente, nome, data_nascimento) VALUES
+(1, 'Adamastor', '1950-06-12'),
+(2, 'Maria', '1970-12-12'),
+(3, 'Glória', '1960-11-19'),
+(4, 'Rosana', '1980-06-22'),
+(5, 'Maria Flor', '1990-08-11'),
+(6, 'Regis', '2000-02-02')
+
+INSERT INTO Consultas (id_consulta, id_paciente, data_consulta, medico) VALUES
+(1, 1, '2025-08-15', 'Dra. Furquim'),
+(2, 2, '2025-08-15', 'Dra. Furquim'),
+(3, 3, '2025-08-15', 'Dra. Furquim'),
+(4, 4, '2025-08-16', 'Dr. Jaguella'),
+(5, 5, NULL, NULL),
+(6, 6, NULL, NULL)
+
+		___________________4
+
+CREATE TABLE Albuns (
+  id_album INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255),
+  artista VARCHAR(255), 
+  ano_lancamento INT
+);
+
+CREATE TABLE Musicas (
+  id_musica INT AUTO_INCREMENT PRIMARY KEY,
+  id_album INT, 
+  titulo VARCHAR(255),
+  duracao TIME,
+  FOREIGN KEY (id_album) REFERENCES Albuns (id_album)
+);
+
+INSERT INTO Albuns (nome, artista, ano_lancamento) VALUES
+('From Zero', 'Linkin Park', 2024),
+('Meteora', 'Linkin Park', 2003),
+('Xero', 'Linkin Park', 1997),
+('Mayhem', 'Lady Gaga', 2025),
+('The Fame', 'Lady Gaga', 2008),
+('Artpop', 'Lady Gaga', 2013);
+
+INSERT INTO Musicas (id_album, titulo, duracao) VALUES
+(1, 'Emptiness Machine', '00:03:10'),
+(1, 'Heavy Is The Crown', '00:02:48'),
+(1, 'Up From The Bottom', '00:03:03'),
+(2, 'Faint', '00:02:42'),
+(4, 'Abracadabra', '00:03:43'),
+(4, 'Zombieboy', '00:03:33');
+
+
+		___________________5
+
+CREATE TABLE Motoristas (
+  id_registro INT AUTO_INCREMENT PRIMARY KEY, -- cada linha única
+  id_motorista INT,
+  nome VARCHAR(255),
+  CNH VARCHAR(255)
+);
+
+CREATE TABLE Viagens (
+  id_viagem INT AUTO_INCREMENT PRIMARY KEY,
+  id_motorista INT,
+  origem VARCHAR(255),
+  destino VARCHAR(255),
+  data DATE,
+  distancia_km DECIMAL(10,2),
+  FOREIGN KEY (id_motorista) REFERENCES Motoristas(id_motorista)
+);
+
+-- Motoristas (permitindo repetição do mesmo id_motorista)
+INSERT INTO Motoristas (id_motorista, nome, CNH) VALUES
+(1, 'Regis', 'B'),
+(1, 'Regis', 'B'),
+(1, 'Regis', 'B'),
+(2, 'Arnaldo', 'C'),
+(2, 'Arnaldo', 'C'),
+(3, 'Ronaldo', 'D');
+
+-- Viagens (com NULL para indicar que não houve viagem)
+INSERT INTO Viagens (id_motorista, origem, destino, data, distancia_km) VALUES
+(1, 'Caxias do Sul - RS', 'Porto Alegre - RS', '2025-08-15', 118.0),
+(1, 'Caxias do Sul - RS', 'Gramado - RS', '2025-07-19', 65.0),
+(1, 'Caxias do Sul - RS', 'Forqueta - RS', '2025-02-22', 13.0),
+(2, NULL, NULL, NULL, NULL),
+(2, NULL, NULL, NULL, NULL),
+(3, 'Natal - RN', 'Caxias do Sul - RS', '2024-04-01', 3909.0);
+
