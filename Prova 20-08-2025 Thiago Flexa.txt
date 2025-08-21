@@ -46,12 +46,13 @@ WHERE Genero = 'F'
 ORDER BY PrimeiroNome 
 
 -- (10) Buscar o nome do filme e o gênero
-SELECT Filmes.Nome, Generos.Genero
+SELECT Filmes.Nome, GROUP_CONCAT(Generos.Genero, ', ') As 'Gêneros do Filme'
 FROM Filmes
 JOIN FilmeGenero 
-ON Filmes.ID = FilmeGenero.IDfilme
-JOIN Generos 
-ON FilmeGenero.IDgenero = Generos.ID;
+ON Filmes.ID = FilmeGenero.IdFilme
+JOIN Generos
+ON FilmeGenero.IdGenero = Generos.Id
+GROUP BY Nome
 
 -- (11) Buscar o nome do filme e o gênero do tipo "Comédia"
 SELECT Filmes.Nome, Generos.Genero
@@ -70,5 +71,6 @@ ON Filmes.ID = ElencoFilme.IDfilme
 JOIN Atores 
 
 ON ElencoFilme.IDator = Atores.ID;
+
 
 
