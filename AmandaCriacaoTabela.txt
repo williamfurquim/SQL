@@ -1,0 +1,73 @@
+CREATE TABLE Atores(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  PrimeiroNome varchar(20),
+  UltimoNome varchar(20),
+  Genero varchar(1)
+);
+
+CREATE TABLE ElencoFilme(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  IdAtor INT,
+  IdFilme INT,
+  Papel varchar(30),
+FOREIGN KEY (IdAtor) REFERENCES Atores (Id),
+FOREIGN KEY (IdFilme) REFERENCES Filmes (Id)
+);
+
+CREATE TABLE Filmes(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  Nome varchar(50),
+  Ano INT,
+  Duracao INT
+);
+
+CREATE TABLE FilmeGenero(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  IdGenero INT,
+  IdFilme INT,
+ FOREIGN KEY (IdGenero) REFERENCES Generos (Id),
+ FOREIGN KEY (IdFilme) REFERENCES Filmes (Id)
+);
+
+CREATE TABLE Generos(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  Genero varchar(20)
+);
+
+=======================================================================================================================================
+
+CREATE TABLE Generos(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  Genero varchar(20)
+);
+
+CREATE TABLE Filmes(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  Nome varchar(50),
+  Ano INT,
+  Duracao INT
+);
+
+CREATE TABLE Atores(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  PrimeiroNome varchar(20),
+  UltimoNome varchar(20),
+  Genero varchar(1)
+);
+
+CREATE TABLE ElencoFilme(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  IdAtor INT,
+  IdFilme INT,
+  Papel varchar(30),
+  FOREIGN KEY (IdAtor) REFERENCES Atores (Id),
+  FOREIGN KEY (IdFilme) REFERENCES Filmes (Id)
+);
+
+CREATE TABLE FilmeGenero(
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  IdGenero INT,
+  IdFilme INT,
+  FOREIGN KEY (IdGenero) REFERENCES Generos (Id),
+  FOREIGN KEY (IdFilme) REFERENCES Filmes (Id)
+);
